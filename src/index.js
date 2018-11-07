@@ -50,70 +50,6 @@ let comments = [
     post: "4"
   }
 ];
-//typeDefs is a string that takes all query types
-const typeDefs = `
-    type Query {
-        users(query:String):[User]!
-        posts(query:String):[Post]!
-        me:User!
-        post:Post
-        comments:[Comment]
-       
-    }
-
-    type Mutation {
-      createUser(data: CreateUserInput):User!
-      createPost(data:CreatePostInput): Post!
-      createComment(data:CreateCommentInput):Comment!
-      deleteUser(id:ID!):User!
-      deletePost(id:ID!):Post!
-      deleteComment(id:ID!):Comment!
-    }
-
-    input CreateUserInput {
-      name:String!
-      age:Int!
-      email:String
-    }
-
-    input CreatePostInput {
-      title:String!
-      body:String!
-      published:Boolean!
-      author:ID!
-    }
-
-    input CreateCommentInput {
-      text:String!
-      author:ID!
-      post:ID! 
-    }
-
-    type User {
-        id:ID!
-        name:String!
-        age:Int!
-        email:String!
-        posts:[Post!]!
-        comments:[Comment]
-    }
-
-    type Post {
-      id: ID!
-      title: String!
-      body: String!
-      published: Boolean!
-      author: User!
-      comments: [Comment!]!
-    }
-
-    type Comment {
-      id: ID!
-      text: String!
-      author: User!
-      post: Post!
-    }
-`;
 
 //RESOLVERS Object
 
@@ -250,8 +186,10 @@ const resolvers = {
 };
 
 const server = new GraphQLServer({
-  typeDefs: typeDefs,
+  typeDefs: "./src/schema.graphql",
   resolvers: resolvers
 });
 
-server.start();
+server.start(() => {
+  console.log("Server running on port 4000");
+});
