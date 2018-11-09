@@ -4,6 +4,7 @@ type Query {
   me: User!
   post: Post
   comments: [Comment]
+  subscription: Subscription
 }
 
 type Mutation {
@@ -76,4 +77,20 @@ type Comment {
   text: String!
   author: User!
   post: Post!
+}
+
+type Subscription {
+  count: Int!
+  comment(postId: ID!): CommentSubscriptionPayload!
+  post: PostSubscriptionPayload!
+}
+
+type PostSubscriptionPayload {
+  mutation: String!
+  data: Post
+}
+
+type CommentSubscriptionPayload {
+  mutation: String!
+  data: Comment
 }

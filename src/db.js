@@ -4,7 +4,7 @@ const posts = [
     id: "2",
     title: "Hello2",
     body: "asgasdfsgddd",
-    published: false,
+    published: true,
     author: "2"
   },
   { id: "3", title: "Hello3", body: "vbnasgd", published: true, author: "3" },
@@ -24,7 +24,7 @@ const users = [
 const comments = [
   {
     id: "1",
-    text: "This worked well for me. Thanks!",
+    text: "This is comment 1 for post 1",
     author: "1",
     post: "1"
   },
@@ -50,7 +50,7 @@ const comments = [
 
 const db = {
   users: users,
-  comment: comments,
+  comments: comments,
   posts: posts
 };
 
